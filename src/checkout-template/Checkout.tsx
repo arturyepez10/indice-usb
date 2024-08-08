@@ -81,7 +81,6 @@ export default function Checkout(props: {
           gap: { xs: 4, md: 8 },
         }}
       >
-        {/* Mobile view */}
         <Box
           sx={{
             display: 'flex',
@@ -91,6 +90,7 @@ export default function Checkout(props: {
             maxWidth: { sm: '100%', md: 600 },
           }}
         >
+          {/* Mobile view: Toggle color mode */}
           <Box
             sx={{
               display: { xs: 'flex', md: 'none' },
@@ -102,7 +102,6 @@ export default function Checkout(props: {
             <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
           </Box>
 
-          {/* Desktop view */}
           <Box
             sx={{
               display: { xs: 'none', md: 'flex' },
@@ -134,6 +133,8 @@ export default function Checkout(props: {
             </Stepper>
           </Box>
         </Box>
+
+        {/* Mobile view: Sidebar / Information */}
         <Card
           sx={{
             display: { xs: 'flex', md: 'none' },
@@ -160,6 +161,8 @@ export default function Checkout(props: {
             <InfoMobile totalPrice={activeStep >= 2 ? '$144.97' : '$134.98'} />
           </CardContent>
         </Card>
+
+        {/* Main content */}
         <Box
           sx={{
             display: 'flex',
