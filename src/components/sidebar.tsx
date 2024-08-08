@@ -1,15 +1,17 @@
 import { Dispatch } from "react";
-import { Grid, Box, Button } from '@mui/material';
-import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import { Grid, Box, PaletteMode } from '@mui/material';
 
 import Info from '../checkout-template/Info';
-import { logoStyle } from "../utils/constants";
+import ToggleColorMode from "./ToggleColorMode";
 
 export const Sidebar = (props: {
   activeStep: number;
   setActiveStep: Dispatch<number>;
+  mode: PaletteMode;
+  toggleColorMode: () => void;
 }) => {
-  const { activeStep } = props;
+  const { activeStep, mode, toggleColorMode } = props;
+
   return (
     <Grid
       item
@@ -31,25 +33,10 @@ export const Sidebar = (props: {
       <Box
         sx={{
           display: 'flex',
-          alignItems: 'end',
-          height: 150,
+          alignItems: 'start',
         }}
       >
-        <Button
-          startIcon={<ArrowBackRoundedIcon />}
-          component="a"
-          href="/material-ui/getting-started/templates/landing-page/"
-          sx={{ ml: '-8px' }}
-        >
-          Back to
-          <img
-            src={
-              'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-            }
-            style={logoStyle}
-            alt="Sitemark's logo"
-          />
-        </Button>
+        <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
       </Box>
       <Box
         sx={{

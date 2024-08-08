@@ -1,7 +1,5 @@
-import * as React from 'react';
-
 import { PaletteMode } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 
 import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
@@ -13,17 +11,18 @@ interface ToggleColorModeProps {
 
 function ToggleColorMode({ mode, toggleColorMode }: ToggleColorModeProps) {
   return (
-    <IconButton
+    <Button
       onClick={toggleColorMode}
+      startIcon={
+        mode === 'dark' 
+          ? <WbSunnyRoundedIcon fontSize="small" />
+          : <ModeNightRoundedIcon fontSize="small" />
+      }
       color="primary"
       aria-label="Theme toggle button"
     >
-      {mode === 'dark' ? (
-        <WbSunnyRoundedIcon fontSize="small" />
-      ) : (
-        <ModeNightRoundedIcon fontSize="small" />
-      )}
-    </IconButton>
+      {mode === 'light' ? 'Light Mode' : 'Dark Mode'}
+    </Button>
   );
 }
 

@@ -11,7 +11,6 @@ import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
 import Typography from '@mui/material/Typography';
 
-import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 
@@ -19,9 +18,8 @@ import AddressForm from './AddressForm';
 import InfoMobile from './InfoMobile';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
-import ToggleColorMode from './ToggleColorMode';
-import { Sidebar } from '../components/sidebar';
-import { logoStyle } from '../utils/constants';
+import ToggleColorMode from '../components/ToggleColorMode';
+import { Sidebar } from '../components/Sidebar';
 import { PaletteMode } from '@mui/material';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
@@ -60,7 +58,12 @@ export default function Checkout(props: {
 
   return (
     <Grid container sx={{ height: { xs: '100%', sm: '100dvh' } }}>
-      <Sidebar activeStep={activeStep} setActiveStep={setActiveStep} />
+      <Sidebar
+        activeStep={activeStep}
+        setActiveStep={setActiveStep}
+        mode={mode}
+        toggleColorMode={toggleColorMode}
+      />
       <Grid
         item
         sm={12}
@@ -78,6 +81,7 @@ export default function Checkout(props: {
           gap: { xs: 4, md: 8 },
         }}
       >
+        {/* Mobile view */}
         <Box
           sx={{
             display: 'flex',
@@ -95,34 +99,19 @@ export default function Checkout(props: {
               justifyContent: 'space-between',
             }}
           >
-            <Button
-              startIcon={<ArrowBackRoundedIcon />}
-              component="a"
-              href="/material-ui/getting-started/templates/landing-page/"
-              sx={{ alignSelf: 'start' }}
-            >
-              Back to
-              <img
-                src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                }
-                style={logoStyle}
-                alt="Sitemark's logo"
-              />
-            </Button>
             <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
           </Box>
+
+          {/* Desktop view */}
           <Box
             sx={{
               display: { xs: 'none', md: 'flex' },
               flexDirection: 'column',
               justifyContent: 'space-between',
-              alignItems: 'flex-end',
+              alignItems: 'flex-start',
               flexGrow: 1,
-              height: 150,
             }}
           >
-            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
             <Stepper
               id="desktop-stepper"
               activeStep={activeStep}
