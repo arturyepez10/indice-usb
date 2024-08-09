@@ -19,11 +19,7 @@ import InfoMobile from './InfoMobile';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import ToggleColorMode from '../components/ToggleColorMode';
-import { Sidebar } from '../components/Sidebar';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { setMode } from '../utils/store/settings';
-import { RootState } from '../utils/store';
+import { Sidebar } from '../components/sidebar';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
@@ -41,14 +37,7 @@ function getStepContent(step: number) {
 }
 
 export default function Checkout() {
-  const mode = useSelector((state: RootState) => state.settings.mode);
-  const dispatch = useDispatch();
-
   const [activeStep, setActiveStep] = React.useState(0);
-
-  const toggleColorMode = () => {
-    dispatch(setMode(mode === 'dark' ? 'light' : 'dark'));
-  };
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -99,7 +88,7 @@ export default function Checkout() {
               justifyContent: 'space-between',
             }}
           >
-            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+            <ToggleColorMode />
           </Box>
 
           <Box
