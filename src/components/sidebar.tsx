@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { Grid, Box, PaletteMode } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 
 import Info from '../checkout-template/Info';
 import ToggleColorMode from "./ToggleColorMode";
@@ -7,10 +7,8 @@ import ToggleColorMode from "./ToggleColorMode";
 export const Sidebar = (props: {
   activeStep: number;
   setActiveStep: Dispatch<number>;
-  mode: PaletteMode;
-  toggleColorMode: () => void;
 }) => {
-  const { activeStep, mode, toggleColorMode } = props;
+  const { activeStep } = props;
 
   return (
     <Grid
@@ -36,7 +34,7 @@ export const Sidebar = (props: {
           alignItems: 'start',
         }}
       >
-        <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+        <ToggleColorMode />
       </Box>
       <Box
         sx={{

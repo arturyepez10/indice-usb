@@ -1,19 +1,20 @@
-import { useState } from 'react'
+import { useSelector } from 'react-redux';
+import { RootState } from './utils/store';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { CssBaseline, PaletteMode } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 
 import Checkout from './checkout-template/Checkout';
 import getTheme from './utils/theme';
 
 function App() {
-  const [mode, setMode] = useState<PaletteMode>('light');
+  const mode = useSelector((state: RootState) => state.settings.mode);
   const customTheme = createTheme(getTheme(mode));
 
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
-      <Checkout mode={mode} setMode={setMode} />
+      <Checkout />
     </ThemeProvider>
   )
 }

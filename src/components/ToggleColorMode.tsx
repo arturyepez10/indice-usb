@@ -1,15 +1,14 @@
-import { PaletteMode } from '@mui/material';
 import Button from '@mui/material/Button';
 
 import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
+import { useReduxStore } from '../use/redux-store';
 
-interface ToggleColorModeProps {
-  mode: PaletteMode;
-  toggleColorMode: () => void;
-}
 
-function ToggleColorMode({ mode, toggleColorMode }: ToggleColorModeProps) {
+function ToggleColorMode() {
+  const { state, toggleColorMode } = useReduxStore();
+  const { mode } = state.settings;
+
   return (
     <Button
       onClick={toggleColorMode}
