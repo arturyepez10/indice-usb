@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../utils/store";
-import { setMode } from "../utils/store/settings";
+import { RootState } from "../store";
+import { setMode } from "../store/settings";
 
 export const useReduxStore = () => {
   const state = useSelector((state: RootState) => state);
