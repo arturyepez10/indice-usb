@@ -20,7 +20,10 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import ToggleColorMode from '../components/ToggleColorMode';
 import { Sidebar } from '../components/Sidebar';
-import { PaletteMode } from '@mui/material';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { setMode } from '../utils/store/settings';
+import { RootState } from '../utils/store';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
@@ -37,15 +40,14 @@ function getStepContent(step: number) {
   }
 }
 
-export default function Checkout(props: {
-  mode: PaletteMode;
-  setMode: React.Dispatch<React.SetStateAction<PaletteMode>>;
-}) {
-  const { mode, setMode } = props;
+export default function Checkout() {
+  const mode = useSelector((state: RootState) => state.settings.mode);
+  const dispatch = useDispatch();
+
   const [activeStep, setActiveStep] = React.useState(0);
 
   const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    dispatch(setMode(mode === 'dark' ? 'light' : 'dark'));
   };
 
   const handleNext = () => {
@@ -61,8 +63,6 @@ export default function Checkout(props: {
       <Sidebar
         activeStep={activeStep}
         setActiveStep={setActiveStep}
-        mode={mode}
-        toggleColorMode={toggleColorMode}
       />
       <Grid
         item

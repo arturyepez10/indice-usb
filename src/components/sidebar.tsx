@@ -1,16 +1,24 @@
 import { Dispatch } from "react";
-import { Grid, Box, PaletteMode } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 
 import Info from '../checkout-template/Info';
 import ToggleColorMode from "./ToggleColorMode";
 
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../utils/store";
+import { setMode } from "../utils/store/settings";
+
 export const Sidebar = (props: {
   activeStep: number;
   setActiveStep: Dispatch<number>;
-  mode: PaletteMode;
-  toggleColorMode: () => void;
 }) => {
-  const { activeStep, mode, toggleColorMode } = props;
+  const { activeStep } = props;
+  const mode = useSelector((state: RootState) => state.settings.mode);
+  const dispatch = useDispatch();
+
+  const toggleColorMode = () => {
+    dispatch(setMode(mode === 'dark' ? 'light' : 'dark'));
+  };
 
   return (
     <Grid
