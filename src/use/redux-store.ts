@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
-import { setMode } from "../store/settings";
+import { setMode, setPeriodModalOpen } from "../store/settings";
 
 export const useReduxStore = () => {
   const state = useSelector((state: RootState) => state);
@@ -10,5 +10,9 @@ export const useReduxStore = () => {
     dispatch(setMode(state.settings.mode === 'dark' ? 'light' : 'dark'));
   };
 
-  return { state, dispatch, toggleColorMode };
+  const togglePeriodModal = (modalState?: boolean) => {
+    dispatch(setPeriodModalOpen(modalState || !state.settings.periodModalOpen));
+  };
+
+  return { state, dispatch, toggleColorMode, togglePeriodModal };
 };

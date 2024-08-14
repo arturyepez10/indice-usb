@@ -4,10 +4,12 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface SettingsState {
   mode: PaletteMode;
+  periodModalOpen: boolean;
 }
 
 const initialState: SettingsState = {
-  mode: 'light'
+  mode: 'light',
+  periodModalOpen: false
 };
 
 export const settingsSlice = createSlice({
@@ -16,10 +18,13 @@ export const settingsSlice = createSlice({
   reducers: {
     setMode: (state, action: PayloadAction<'light' | 'dark'>) => {
       state.mode = action.payload;
+    },
+    setPeriodModalOpen: (state, action: PayloadAction<boolean>) => {
+      state.periodModalOpen = action.payload;
     }
   }
 });
 
-export const { setMode } = settingsSlice.actions;
+export const { setMode, setPeriodModalOpen } = settingsSlice.actions;
 
 export default settingsSlice.reducer;
