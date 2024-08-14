@@ -9,7 +9,7 @@ interface TableTitleProps {
 export const TableTitle = ({ name, year }: TableTitleProps) => (
   <Grid container>
     <Grid item xs={9}>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" gutterBottom paddingLeft={2}>
         {name}
       </Typography>
     </Grid>
