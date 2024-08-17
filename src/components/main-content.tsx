@@ -1,14 +1,11 @@
 
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import AddIcon from '@mui/icons-material/Add';
-
-import Header from './header';
 import Box from '@mui/material/Box';
 
-export const MainContent = () => {
+import Header from './header';
+import { FormDialog } from './form-dialog';
 
-  const openDialog = () => {}
+export const MainContent = () => {
 
   return (
     <Grid
@@ -41,16 +38,7 @@ export const MainContent = () => {
           gap: { xs: 5, md: 'none' },
         }}
       >
-        <Button
-          variant="text"
-          startIcon={<AddIcon />}
-          onClick={openDialog}
-          sx={{
-            width: { xs: '100%', sm: 'fit-content' },
-          }}
-        >
-          Agregar Trimestre
-        </Button>
+        <FormDialog />
       </Box>
     </Grid>
   )
