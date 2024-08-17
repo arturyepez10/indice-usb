@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import settingsReducer from "./settings";
+import academicsReducer from "./academics";
 
 export const store = configureStore({
   reducer: {
     settings: settingsReducer,
+    academics: academicsReducer,
   },
 });
 

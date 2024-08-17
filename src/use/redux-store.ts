@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
+
 import { RootState } from "../store";
 import { setMode, setPeriodModalOpen } from "../store/settings";
+import { AcademicPeriodData, setNewPeriod } from "../store/academics";
 
 export const useReduxStore = () => {
   const state = useSelector((state: RootState) => state);
@@ -11,8 +13,13 @@ export const useReduxStore = () => {
   };
 
   const togglePeriodModal = (modalState?: boolean) => {
-    dispatch(setPeriodModalOpen(modalState || !state.settings.periodModalOpen));
+    const value = modalState || !state.settings.periodModalOpen;
+    dispatch(setPeriodModalOpen(value));
   };
 
-  return { state, dispatch, toggleColorMode, togglePeriodModal };
+  const addAcademicPeriod = (period_data: AcademicPeriodData) => {
+    dispatch(setNewPeriod(period_data));
+  }
+
+  return { state, dispatch, toggleColorMode, togglePeriodModal, addAcademicPeriod };
 };
