@@ -16,26 +16,14 @@ import { styled } from "@mui/material";
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useReduxStore } from "../../use/redux-store";
+import { AcademicPeriodData } from "../../store/academics";
 
 const FormGrid = styled(Grid)(() => ({
   display: 'flex',
   flexDirection: 'column',
 }));
 
-interface PeriodFormData {
-  name: string;
-  year: number | null;
-  courses: {
-    code: string;
-    name: string;
-    credits: number | null;
-    grade: number | null;
-    has_effect: boolean;
-    removed: boolean;
-  }[];
-}
-
-const defaultValues: PeriodFormData = {
+const defaultValues: AcademicPeriodData = {
   name: "",
   year: null,
   courses: []
@@ -51,17 +39,16 @@ const defaultCourse = {
 }
 
 export const PeriodForm = () => {
-  const { togglePeriodModal } = useReduxStore();
-  const { control, handleSubmit, register } = useForm<PeriodFormData>({ defaultValues });
+  const { togglePeriodModal, addAcademicPeriod } = useReduxStore();
+  const { control, handleSubmit, register } = useForm<AcademicPeriodData>({ defaultValues });
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: "courses"
   });
 
-  const createPeriod: SubmitHandler<PeriodFormData> = (data) => {
-    console.log("data has been sent");
-    console.log(data);
+  const createPeriod: SubmitHandler<AcademicPeriodData> = (data) => {
+    addAcademicPeriod(data)
     togglePeriodModal(false);
   }
 
