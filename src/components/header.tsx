@@ -26,7 +26,7 @@ export const Header = () => {
       </Box>
 
       {/* Main Title */}
-      <Typography variant="h5" minWidth="fit-content">Informe Academico</Typography>
+      <Typography variant="h4" minWidth="fit-content">Informe Academico</Typography>
     </Box>
   )
 }

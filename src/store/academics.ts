@@ -15,11 +15,11 @@ export interface AcademicPeriodData {
 }
 
 export interface AcademicsState {
-  summary: AcademicPeriodData[];
+  periods: AcademicPeriodData[];
 }
 
 const initialState: AcademicsState = {
-  summary: [],
+  periods: [],
 };
 
 export const academicsSlice = createSlice({
@@ -27,7 +27,7 @@ export const academicsSlice = createSlice({
   initialState,
   reducers: {
     setNewPeriod(state, action: PayloadAction<AcademicPeriodData>) {
-      state.summary.push(action.payload);
+      state.periods.push(action.payload);
     }
   }
 });
