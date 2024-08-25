@@ -2,10 +2,17 @@
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
+import { useReduxStore } from '../use/redux-store';
 import Header from './header';
-import { FormDialog } from './form-dialog';
+import { TableList } from "./table-list";
+import { EmptyTable } from './empty';
 
 export const MainContent = () => {
+  const {
+    state: {
+      academics
+    }
+  } = useReduxStore();
 
   return (
     <Grid
@@ -38,7 +45,11 @@ export const MainContent = () => {
           gap: { xs: 5, md: 'none' },
         }}
       >
-        <FormDialog />
+        {
+          !academics.periods.length
+            ? <EmptyTable />
+            : <TableList />
+        }
       </Box>
     </Grid>
   )
