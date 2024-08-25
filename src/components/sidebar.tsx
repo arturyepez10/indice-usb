@@ -1,4 +1,3 @@
-import { Dispatch } from "react";
 import { Grid, Box } from '@mui/material';
 
 import Info from '../checkout-template/Info';
@@ -6,7 +5,6 @@ import ToggleColorMode from "./ToggleColorMode";
 
 export const Sidebar = (props: {
   activeStep: number;
-  setActiveStep: Dispatch<number>;
 }) => {
   const { activeStep } = props;
 

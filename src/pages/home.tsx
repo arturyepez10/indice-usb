@@ -6,13 +6,12 @@ import { MainContent } from "../components/main-content";
 
 
 export const Home = () => {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep] = useState(0);
 
   return (
     <Grid container sx={{ height: { xs: '100%', sm: '100dvh' } }}>
       <Sidebar
         activeStep={activeStep}
-        setActiveStep={setActiveStep}
       />
       <MainContent />
     </Grid>

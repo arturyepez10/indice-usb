@@ -20,6 +20,7 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import ToggleColorMode from '../components/ToggleColorMode';
 import { Sidebar } from '../components/sidebar';
+import FormDialog from '../components/form-dialog';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
@@ -51,7 +52,6 @@ export default function Checkout() {
     <Grid container sx={{ height: { xs: '100%', sm: '100dvh' } }}>
       <Sidebar
         activeStep={activeStep}
-        setActiveStep={setActiveStep}
       />
       <Grid
         item
@@ -73,7 +73,7 @@ export default function Checkout() {
         <Box
           sx={{
             display: 'flex',
-            justifyContent: { sm: 'space-between', md: 'flex-end' },
+            justifyContent: { sm: 'space-between', md: 'center' },
             alignItems: 'center',
             width: '100%',
             maxWidth: { sm: '100%', md: 600 },
@@ -82,7 +82,7 @@ export default function Checkout() {
           {/* Mobile view: Toggle color mode */}
           <Box
             sx={{
-              display: { xs: 'flex', md: 'none' },
+              display: { sm: 'flex', md: 'none' },
               flexDirection: 'row',
               width: '100%',
               justifyContent: 'space-between',
@@ -91,6 +91,19 @@ export default function Checkout() {
             <ToggleColorMode />
           </Box>
 
+          {/* Main Title */}
+          <Typography variant="h5" minWidth="fit-content">Informe Academico</Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: { sm: 'space-between' },
+            alignItems: 'center',
+            width: '100%',
+            maxWidth: { sm: '100%', md: 600 },
+          }}
+        >
           <Box
             sx={{
               display: { xs: 'none', md: 'flex' },
@@ -259,6 +272,7 @@ export default function Checkout() {
               </Box>
             </React.Fragment>
           )}
+        <FormDialog />
         </Box>
       </Grid>
     </Grid>
