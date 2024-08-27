@@ -17,6 +17,7 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useReduxStore } from "../../use/redux-store";
 import { AcademicPeriodData } from "../../store/academics";
+import GradeInput from "./grade-input";
 
 const FormGrid = styled(Grid)(() => ({
   display: 'flex',
@@ -40,7 +41,12 @@ const defaultCourse = {
 
 export const PeriodForm = () => {
   const { togglePeriodModal, addAcademicPeriod } = useReduxStore();
-  const { control, handleSubmit, register } = useForm<AcademicPeriodData>({ defaultValues });
+  const {
+    control,
+    handleSubmit,
+    register,
+    setValue
+  } = useForm<AcademicPeriodData>({ defaultValues });
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -139,18 +145,13 @@ export const PeriodForm = () => {
                     {...register(`courses.${index}.credits`)}
                   />
                 </FormGrid>
-                <FormGrid item xs={6} md={2}>
-                  <FormLabel htmlFor={`courses.${index}.grade`}>
-                    Nota
-                  </FormLabel>
-                  <OutlinedInput
-                    id={`courses[${index}].grade`}
-                    type="number"
-                    placeholder="Nota"
-                    defaultValue={field.grade}
-                    {...register(`courses.${index}.grade`)}
-                  />
-                </FormGrid>
+                <GradeInput 
+                  control={control}
+                  register={register}
+                  setValue={setValue}
+                  field={field}
+                  index={index}
+                />
                 <FormGrid item xs={12} md={6}>
                   <FormGroup>
                     <FormControlLabel
