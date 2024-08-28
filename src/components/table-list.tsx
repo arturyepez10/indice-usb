@@ -10,11 +10,23 @@ export const TableList = () => {
     }
   } = useReduxStore();
 
+  const deleteItem = (index: number) => {
+    console.log("deleting item with index -> ", index);
+  }
+
+  const editItem = (index: number) => {
+    console.log("editing item with index -> ", index);
+  }
+
   return (
     <Box maxWidth="100%">
       {academics.periods.map((period, index) => (
         <Box marginY={3} key={index}>
-          <Table period={period} />
+          <Table
+            period={period}
+            deleteAction={() => deleteItem(index)}
+            editAction={() => editItem(index)}
+          />
         </Box>
       ))}
     </Box>

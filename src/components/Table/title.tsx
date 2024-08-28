@@ -7,7 +7,7 @@ interface TableTitleProps {
 }
 
 export const TableTitle = ({ name, year }: TableTitleProps) => (
-  <Grid container>
+  <Grid container item xs={10} alignItems="center">
     <Grid item xs={9}>
       <Typography variant="h6" gutterBottom paddingLeft={2}>
         {name}
