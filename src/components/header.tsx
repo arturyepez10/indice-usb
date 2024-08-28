@@ -10,7 +10,7 @@ export const Header = () => {
         justifyContent: { sm: 'space-between', md: 'center' },
         alignItems: 'center',
         width: '100%',
-        maxWidth: { sm: '100%', md: 600 },
+        maxWidth: { sm: '100%' },
       }}
     >
       {/* Mobile view: Toggle color mode */}

@@ -26,7 +26,7 @@ export const MainContent = () => {
         maxWidth: '100%',
         width: '100%',
         backgroundColor: { xs: 'transparent', sm: 'background.default' },
-        alignItems: 'start',
+        alignItems: 'center',
         pt: { xs: 2, sm: 4 },
         px: { xs: 2, sm: 10 },
         gap: { xs: 4, md: 8 },
@@ -40,8 +40,7 @@ export const MainContent = () => {
           flexDirection: 'column',
           flexGrow: 1,
           width: '100%',
-          maxWidth: { sm: '100%', md: 600 },
-          maxHeight: '720px',
+          maxWidth: { sm: '100%', md: 700 },
           gap: { xs: 5, md: 'none' },
         }}
       >
