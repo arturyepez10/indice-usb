@@ -13,7 +13,9 @@ export const TableList = () => {
   return (
     <Box maxWidth="100%">
       {academics.periods.map((period, index) => (
-        <Table key={index} period={period} />
+        <Box marginY={3} key={index}>
+          <Table period={period} />
+        </Box>
       ))}
     </Box>
   )

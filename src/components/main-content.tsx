@@ -29,7 +29,7 @@ export const MainContent = () => {
         alignItems: 'center',
         pt: { xs: 2, sm: 4 },
         px: { xs: 2, sm: 10 },
-        gap: { xs: 4, md: 8 },
+        gap: { xs: 4, md: 2 },
       }}
     >
       <Header />
