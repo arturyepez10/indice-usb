@@ -2,6 +2,7 @@ import { Grid, Box } from '@mui/material';
 
 import Info from '../checkout-template/Info';
 import ToggleColorMode from "./ToggleColorMode";
+import FormDialog from './form-dialog';
 
 export const Sidebar = (props: {
   activeStep: number;
@@ -29,10 +30,12 @@ export const Sidebar = (props: {
       <Box
         sx={{
           display: 'flex',
-          alignItems: 'start',
+          justifyContent: 'space-between',
+          width: '100%'
         }}
       >
         <ToggleColorMode />
+        <FormDialog />
       </Box>
       <Box
         sx={{
