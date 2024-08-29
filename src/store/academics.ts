@@ -8,7 +8,7 @@ export interface AcademicPeriodData {
     code: string;
     name: string;
     credits: number | null;
-    grade: number | null;
+    grade: number | "R" | null;
     has_effect: boolean;
     removed: boolean;
   }[];
@@ -28,10 +28,16 @@ export const academicsSlice = createSlice({
   reducers: {
     setNewPeriod(state, action: PayloadAction<AcademicPeriodData>) {
       state.periods.push(action.payload);
+    },
+    deletePeriod(state, action: PayloadAction<number>) {
+      state.periods.splice(action.payload, 1);
+    },
+    updatePeriod(state, action: PayloadAction<{ index: number, period: AcademicPeriodData }>) {
+      state.periods[action.payload.index] = action.payload.period;
     }
   }
 });
 
-export const { setNewPeriod } = academicsSlice.actions;
+export const { setNewPeriod, deletePeriod, updatePeriod } = academicsSlice.actions;
 
 export default academicsSlice.reducer;

@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../store";
-import { setMode, setPeriodModalOpen } from "../store/settings";
-import { AcademicPeriodData, setNewPeriod } from "../store/academics";
+import { setMode, setPeriodModalOpen, setEditPeriod } from "../store/settings";
+import { AcademicPeriodData, setNewPeriod, deletePeriod, updatePeriod } from "../store/academics";
 
 export const useReduxStore = () => {
   const state = useSelector((state: RootState) => state);
@@ -17,9 +17,33 @@ export const useReduxStore = () => {
     dispatch(setPeriodModalOpen(value));
   };
 
-  const addAcademicPeriod = (period_data: AcademicPeriodData) => {
-    dispatch(setNewPeriod(period_data));
+  const addAcademicPeriod = (period_data: AcademicPeriodData, index?: number) => {
+    const isEdition = state.settings.editPeriod.status;
+
+    if (!isEdition) {
+      dispatch(setNewPeriod(period_data));
+    } 
+    
+    if (isEdition && index !== undefined) {
+      dispatch(updatePeriod({ index, period: period_data }));
+    }
+  };
+
+  const deleteAcademicPeriod = (index: number) => {
+    dispatch(deletePeriod(index));
+  };
+
+  const editAcademicPeriod = (index: number) => {
+    dispatch(setEditPeriod(index));  
   }
 
-  return { state, dispatch, toggleColorMode, togglePeriodModal, addAcademicPeriod };
+  return {
+    state,
+    dispatch,
+    toggleColorMode,
+    togglePeriodModal,
+    addAcademicPeriod,
+    deleteAcademicPeriod,
+    editAcademicPeriod
+  };
 };

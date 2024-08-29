@@ -5,11 +5,19 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 export interface SettingsState {
   mode: PaletteMode;
   periodModalOpen: boolean;
+  editPeriod: {
+    status: boolean;
+    index: number | null;
+  };
 }
 
 const initialState: SettingsState = {
   mode: 'light',
-  periodModalOpen: false
+  periodModalOpen: false,
+  editPeriod: {
+    status: false,
+    index: null
+  }
 };
 
 export const settingsSlice = createSlice({
@@ -21,10 +29,15 @@ export const settingsSlice = createSlice({
     },
     setPeriodModalOpen: (state, action: PayloadAction<boolean>) => {
       state.periodModalOpen = action.payload;
+      if (!action.payload) state.editPeriod = { status: false, index: null };
+    },
+    setEditPeriod: (state, action: PayloadAction<number>) => {
+      state.periodModalOpen = true
+      state.editPeriod = { status: true, index: action.payload };
     }
   }
 });
 
-export const { setMode, setPeriodModalOpen } = settingsSlice.actions;
+export const { setMode, setPeriodModalOpen, setEditPeriod } = settingsSlice.actions;
 
 export default settingsSlice.reducer;
