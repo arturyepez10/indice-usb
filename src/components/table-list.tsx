@@ -7,15 +7,17 @@ export const TableList = () => {
   const {
     state: {
       academics
-    }
+    },
+    deleteAcademicPeriod,
+    editAcademicPeriod
   } = useReduxStore();
 
   const deleteItem = (index: number) => {
-    console.log("deleting item with index -> ", index);
+    deleteAcademicPeriod(index);
   }
 
   const editItem = (index: number) => {
-    console.log("editing item with index -> ", index);
+    editAcademicPeriod(index);
   }
 
   return (
