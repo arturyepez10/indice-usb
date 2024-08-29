@@ -18,6 +18,7 @@ interface GradeInputProps {
   register: UseFormRegister<AcademicPeriodData>;
   setValue: UseFormSetValue<AcademicPeriodData>;
   field: FieldArrayWithId<AcademicPeriodData, "courses", "id">;
+  isEdition?: boolean;
   index: number;
 }
 
@@ -26,6 +27,7 @@ export const GradeInput = ({
   register,
   setValue,
   field,
+  isEdition,
   index
 }: GradeInputProps) => {
   const removed = useWatch({
@@ -34,9 +36,9 @@ export const GradeInput = ({
   });
 
   useEffect(() => {
-    if (setValue)
+    if (setValue && !isEdition)
       setValue(`courses.${index}.grade`, removed ? "R" : null);
-  }, [removed, setValue, index])
+  }, [removed, setValue, index, isEdition]);
 
   return (
     <FormGrid item xs={6} md={2}>
@@ -45,9 +47,8 @@ export const GradeInput = ({
       </FormLabel>
       <OutlinedInput
         id={`courses[${index}].grade`}
-        type="string"
         placeholder="Nota"
-        defaultValue={field.grade}
+        defaultValue={`${field.grade}`}
         disabled={removed}
         {...register(`courses.${index}.grade`)}
       />

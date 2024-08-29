@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 
 import Button from '@mui/material/Button';
@@ -40,12 +41,20 @@ const defaultCourse = {
 }
 
 export const PeriodForm = () => {
-  const { togglePeriodModal, addAcademicPeriod } = useReduxStore();
+  const {
+    state: {
+      settings: { editPeriod },
+      academics: { periods }
+    },
+    togglePeriodModal,
+    addAcademicPeriod
+  } = useReduxStore();
   const {
     control,
     handleSubmit,
     register,
-    setValue
+    setValue,
+    reset
   } = useForm<AcademicPeriodData>({ defaultValues });
 
   const { fields, append, remove } = useFieldArray({
@@ -53,10 +62,26 @@ export const PeriodForm = () => {
     name: "courses"
   });
 
+  useEffect(() => {
+    if (editPeriod.status && editPeriod.index !== null) {
+      const period = periods[editPeriod.index];
+      reset(period);
+    }
+  }, [editPeriod.status, editPeriod.index, periods, reset]);
+
   const createPeriod: SubmitHandler<AcademicPeriodData> = (data) => {
-    addAcademicPeriod(data)
+    addAcademicPeriod(
+      {
+        ...data,
+        courses: data.courses.map((course) => ({
+          ...course,
+          grade: course.grade !== "R" && course.grade !== null ? +course.grade : "R"
+        }))
+      },
+      editPeriod.index ?? undefined
+    );
     togglePeriodModal(false);
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(createPeriod)}>
@@ -150,6 +175,7 @@ export const PeriodForm = () => {
                   register={register}
                   setValue={setValue}
                   field={field}
+                  isEdition={editPeriod.status}
                   index={index}
                 />
                 <FormGrid item xs={12} md={6}>
@@ -185,7 +211,13 @@ export const PeriodForm = () => {
             ))}
           </Grid>
           <Grid item container xs={12} justifyContent="flex-end">
-            <Button type="submit">Agregar</Button>
+            <Button type="submit">
+              {
+                editPeriod.status
+                  ? "Actualizar"
+                  : "Agregar"
+              }
+            </Button>
           </Grid>
         </Grid>
       </Grid>
