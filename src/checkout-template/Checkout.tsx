@@ -19,7 +19,7 @@ import InfoMobile from './InfoMobile';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import ToggleColorMode from '../components/ToggleColorMode';
-import { Sidebar } from '../components/sidebar';
+import { Sidebar } from './sidebar';
 import FormDialog from '../components/form-dialog';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];

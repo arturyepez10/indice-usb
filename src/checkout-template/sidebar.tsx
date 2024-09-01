@@ -1,8 +1,8 @@
 import { Grid, Box } from '@mui/material';
 
 import Info from '../checkout-template/Info';
-import ToggleColorMode from "./ToggleColorMode";
-import FormDialog from './form-dialog';
+import ToggleColorMode from "../components/ToggleColorMode";
+import FormDialog from '../components/form-dialog';
 
 export const Sidebar = (props: {
   activeStep: number;
