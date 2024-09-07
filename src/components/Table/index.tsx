@@ -9,8 +9,10 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import TableFooter from '@mui/material/TableFooter';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import IconButton from '@mui/material/IconButton';
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
@@ -29,6 +31,8 @@ export default function Table({
   editAction
 }: TableProps) {
   const { name, year, courses } = period;
+
+  const fillerCourses = 5 - courses.length;
 
   return (
     <Container>
@@ -77,7 +81,30 @@ export default function Table({
                   </TableCell>
                 </TableRow>
               ))}
+              {fillerCourses > 0 ? (
+                Array(fillerCourses).fill(0).map((_, index) => (
+                  <TableRow key={index}>
+                    <TableCell colSpan={5} />
+                  </TableRow>
+                  )
+                )
+              ) : null}
             </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TableCell colSpan={5} padding="normal">
+                  <Divider />
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell colSpan={2} align="center" padding="none">
+                  Promedio Período: <strong>{period.period_grade}</strong>
+                </TableCell>
+                <TableCell colSpan={3} align="center" padding="none">
+                  Promedio Acumulado: <strong>{"0.00"}</strong>
+                </TableCell>
+              </TableRow>
+            </TableFooter>
           </MUITable>
         </TableContainer>
       </Stack>
