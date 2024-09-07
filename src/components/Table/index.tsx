@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { AcademicPeriod, Course } from '@arturyepez10/indice-usb-node';
+import { AcademicPeriod } from '@arturyepez10/indice-usb-node';
 
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
@@ -17,43 +16,19 @@ import EditIcon from '@mui/icons-material/Edit';
 
 import { Container } from '../container';
 import { TableTitle } from './title';
-import { AcademicPeriodData } from '../../store/academics';
 
 interface TableProps {
-  period: AcademicPeriodData;
+  period: AcademicPeriod;
   deleteAction?: () => void;
   editAction?: () => void;
 }
 
 export default function Table({
-  period: academicPeriod,
+  period,
   deleteAction,
   editAction
 }: TableProps) {
-  const [period, setPeriod] = useState(new AcademicPeriod());
   const { name, year, courses } = period;
-  
-  useEffect(() => {
-    const initPeriod = new AcademicPeriod(
-      academicPeriod.name,
-      academicPeriod.year ?? undefined
-    );
-
-    academicPeriod.courses.forEach((course) => {
-      initPeriod.add_course(
-        new Course(
-          course.code,
-          course.name,
-          course.credits!, // Value will always be defined (because of data validation)
-          course.grade ?? "R",
-          course.removed,
-          course.has_effect
-        )
-      )
-    });
-
-    setPeriod(initPeriod);
-  }, [academicPeriod]);
 
   return (
     <Container>

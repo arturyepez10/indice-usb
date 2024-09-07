@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 
 import { useReduxStore } from '../use/redux-store';
+import { useAcademicSummary } from '../use/use-summary';
 import Table from './Table';
 
 export const TableList = () => {
@@ -11,6 +12,8 @@ export const TableList = () => {
     deleteAcademicPeriod,
     editAcademicPeriod
   } = useReduxStore();
+
+  const { parseAcademicPeriod } = useAcademicSummary();
 
   const deleteItem = (index: number) => {
     deleteAcademicPeriod(index);
@@ -25,7 +28,7 @@ export const TableList = () => {
       {academics.periods.map((period, index) => (
         <Box marginY={3} key={index}>
           <Table
-            period={period}
+            period={parseAcademicPeriod(period)}
             deleteAction={() => deleteItem(index)}
             editAction={() => editItem(index)}
           />
