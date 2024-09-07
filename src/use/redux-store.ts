@@ -11,20 +11,21 @@ import {
 } from "../store/academics";
 
 export const useReduxStore = () => {
-  const state = useSelector((state: RootState) => state);
+  const settings = useSelector((state: RootState) => state.settings);
+  const academics = useSelector((state: RootState) => state.academics);
   const dispatch = useDispatch();
 
   const toggleColorMode = () => {
-    dispatch(setMode(state.settings.mode === 'dark' ? 'light' : 'dark'));
+    dispatch(setMode(settings.mode === 'dark' ? 'light' : 'dark'));
   };
 
   const togglePeriodModal = (modalState?: boolean) => {
-    const value = modalState || !state.settings.periodModalOpen;
+    const value = modalState || !settings.periodModalOpen;
     dispatch(setPeriodModalOpen(value));
   };
 
   const addAcademicPeriod = (period_data: AcademicPeriodData, index?: number) => {
-    const isEdition = state.settings.editPeriod.status;
+    const isEdition = settings.editPeriod.status;
 
     if (!isEdition) {
       dispatch(setNewPeriod(period_data));
@@ -48,7 +49,7 @@ export const useReduxStore = () => {
   };
 
   return {
-    state,
+    state: { settings, academics },
     dispatch,
     toggleColorMode,
     togglePeriodModal,
