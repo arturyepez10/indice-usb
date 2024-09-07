@@ -28,7 +28,8 @@ const FormGrid = styled(Grid)(() => ({
 const defaultValues: AcademicPeriodData = {
   name: "",
   year: null,
-  courses: []
+  courses: [],
+  accumulated_grade: 0
 }
 
 const defaultCourse = {
@@ -75,7 +76,8 @@ export const PeriodForm = () => {
         ...data,
         courses: data.courses.map((course) => ({
           ...course,
-          grade: course.grade !== "R" && course.grade !== null ? +course.grade : "R"
+          grade: course.grade !== "R" && course.grade !== null ? +course.grade : "R",
+          credits: course.credits !== null ? +course.credits : null
         }))
       },
       editPeriod.index ?? undefined

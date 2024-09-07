@@ -101,7 +101,7 @@ export default function Table({
                   Promedio Período: <strong>{period.period_grade}</strong>
                 </TableCell>
                 <TableCell colSpan={3} align="center" padding="none">
-                  Promedio Acumulado: <strong>{"0.00"}</strong>
+                  Promedio Acumulado: <strong>{period.accumulated_grade}</strong>
                 </TableCell>
               </TableRow>
             </TableFooter>

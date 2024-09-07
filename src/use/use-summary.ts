@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { AcademicPeriod, AcademicSummary, Course } from "@arturyepez10/indice-usb-node";
 
 import { useReduxStore } from "./redux-store";
@@ -8,7 +8,8 @@ export const useAcademicSummary = () => {
   const {
     state: {
       academics
-    }
+    },
+    updateAccumulatedGrade
   } = useReduxStore();
 
   const [summary] = useState(new AcademicSummary());
@@ -32,22 +33,31 @@ export const useAcademicSummary = () => {
       )
     });
 
+    period.accumulated_grade = academicPeriod.accumulated_grade;
+
     return period;
   }
 
-  useEffect(() => {
-    if (academics.periods.length) {
-      const periods = academics.periods.map((period) => (
-        parseAcademicPeriod(period)
-      ));
+  const updateSummary = useCallback(() => {
+    summary.academic_periods = [];
 
-      summary.academic_periods = periods;
-    }
-  }, [academics.periods, academics.periods.length, summary]);
+    academics.periods.forEach((p, index) => {
+      const period = parseAcademicPeriod(p);
+      summary.add_academic_period(period);
+
+      summary.academic_periods[index].accumulated_grade = summary.summary_grade();
+      updateAccumulatedGrade(index, summary.summary_grade());
+    });
+  }, [academics.periods, summary, updateAccumulatedGrade]);
+
+  useEffect(() => {
+    updateSummary();
+  }, [academics.periods.length, updateSummary]);
 
   return {
     summary,
-    parseAcademicPeriod
+    parseAcademicPeriod,
+    updateSummary
   };
 };
 

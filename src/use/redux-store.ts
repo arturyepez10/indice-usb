@@ -2,7 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../store";
 import { setMode, setPeriodModalOpen, setEditPeriod } from "../store/settings";
-import { AcademicPeriodData, setNewPeriod, deletePeriod, updatePeriod } from "../store/academics";
+import {
+  AcademicPeriodData,
+  setNewPeriod,
+  deletePeriod,
+  updatePeriod,
+  updatPeriodAccumulatedGrade
+} from "../store/academics";
 
 export const useReduxStore = () => {
   const state = useSelector((state: RootState) => state);
@@ -37,6 +43,10 @@ export const useReduxStore = () => {
     dispatch(setEditPeriod(index));  
   }
 
+  const updateAccumulatedGrade = (period: number, value: number) => {
+    dispatch(updatPeriodAccumulatedGrade({ period, value }));
+  };
+
   return {
     state,
     dispatch,
@@ -44,6 +54,7 @@ export const useReduxStore = () => {
     togglePeriodModal,
     addAcademicPeriod,
     deleteAcademicPeriod,
-    editAcademicPeriod
+    editAcademicPeriod,
+    updateAccumulatedGrade
   };
 };

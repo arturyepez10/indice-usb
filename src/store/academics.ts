@@ -12,6 +12,7 @@ export interface AcademicPeriodData {
     has_effect: boolean;
     removed: boolean;
   }[];
+  accumulated_grade: number;
 }
 
 export interface AcademicsState {
@@ -34,10 +35,14 @@ export const academicsSlice = createSlice({
     },
     updatePeriod(state, action: PayloadAction<{ index: number, period: AcademicPeriodData }>) {
       state.periods[action.payload.index] = action.payload.period;
+    },
+    updatPeriodAccumulatedGrade(state, action: PayloadAction<{ period: number, value: number }>) {
+      const { period, value } = action.payload;
+      state.periods[period].accumulated_grade = value;
     }
   }
 });
 
-export const { setNewPeriod, deletePeriod, updatePeriod } = academicsSlice.actions;
+export const { setNewPeriod, deletePeriod, updatePeriod, updatPeriodAccumulatedGrade } = academicsSlice.actions;
 
 export default academicsSlice.reducer;
