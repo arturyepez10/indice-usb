@@ -11,6 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 
 import Info from './info';
+import FormDialog from '../form-dialog';
 
 export const MobileSidebar = () => {
   const [open, setOpen] = useState(false);
@@ -51,10 +52,13 @@ export const MobileSidebar = () => {
           display: 'flex',
           width: '100%',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'space-around',
           ':last-child': { pb: 2 },
         }}
       >
+        <div>
+          <FormDialog />
+        </div>
         <div>
           <Button
             variant="text"
