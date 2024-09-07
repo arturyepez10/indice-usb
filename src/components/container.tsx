@@ -13,7 +13,7 @@ export const Container = ({ children }: ContainerProps) => {
         flexDirection: 'column',
         justifyContent: 'space-between',
         p: 3,
-        height: { xs: 300, sm: 350, md: 375 },
+        minHeight: { xs: 300, sm: 350, md: 375 },
         width: '100%',
         borderRadius: '20px',
         border: '1px solid ',
