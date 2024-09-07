@@ -4,8 +4,8 @@ import { RootState } from './store';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 
-import Checkout from './checkout-template/Checkout';
 import getTheme from './utils/theme';
+import Home from './pages/home';
 
 function App() {
   const mode = useSelector((state: RootState) => state.settings.mode);
@@ -14,7 +14,7 @@ function App() {
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
-      <Checkout />
+      <Home />
     </ThemeProvider>
   )
 }
