@@ -2,7 +2,6 @@
   "name": "indice-usb",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -10,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@arturyepez10/indice-usb-node": "^1.1.2",
+    "@arturyepez10/indice-usb-node": "^1.2.1",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^5.16.6",
