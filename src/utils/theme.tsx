@@ -116,8 +116,8 @@ const getDesignTokens = (mode: PaletteMode) => ({
       ...(mode === 'dark' && { main: '#F7B538', dark: '#F79F00' }),
     },
     error: {
-      light: red[50],
-      main: red[500],
+      light: red[200],
+      main: red[400],
       dark: red[700],
       ...(mode === 'dark' && { light: '#D32F2F', main: '#D32F2F', dark: '#B22A2A' }),
     },
@@ -441,6 +441,11 @@ export default function getTheme(mode: PaletteMode): ThemeOptions {
               outline: '4px solid',
               outlineColor: brand[200],
             },
+            '&.Mui-error': {
+              outlineColor: theme.palette.error.light + " !important",
+              outline: '2px solid', 
+              borderColor: theme.palette.error.main,
+            },
             ...(theme.palette.mode === 'dark' && {
               '& .MuiInputBase-input': {
                 '&::placeholder': {
@@ -483,9 +488,14 @@ export default function getTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiInputBase: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             border: 'none',
-          },
+            '&.Mui-error': {
+              outlineColor: theme.palette.error.light + " !important",
+              outline: '2px solid', 
+              borderColor: theme.palette.error.main,
+            },
+          }),
         },
       },
       MuiTextField: {
