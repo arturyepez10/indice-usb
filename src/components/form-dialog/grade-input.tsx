@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from 'react';
-import { Control, useWatch, UseFormRegister, FieldArrayWithId, UseFormSetValue } from 'react-hook-form';
+import { useWatch, FieldArrayWithId, useFormContext } from 'react-hook-form';
+
 import Grid from "@mui/material/Grid";
 import FormLabel from "@mui/material/FormLabel";
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { styled } from "@mui/material";
 
 import { AcademicPeriodData } from '../../store/academics';
+import { useReduxStore } from '../../use/redux-store';
 
 const FormGrid = styled(Grid)(() => ({
   display: 'flex',
@@ -14,22 +16,26 @@ const FormGrid = styled(Grid)(() => ({
 }));
 
 interface GradeInputProps {
-  control: Control<AcademicPeriodData, any>;
-  register: UseFormRegister<AcademicPeriodData>;
-  setValue: UseFormSetValue<AcademicPeriodData>;
   field: FieldArrayWithId<AcademicPeriodData, "courses", "id">;
-  isEdition?: boolean;
   index: number;
 }
 
 export const GradeInput = ({
-  control,
-  register,
-  setValue,
   field,
-  isEdition,
   index
 }: GradeInputProps) => {
+  const {
+    state: {
+      settings: { editPeriod: { status: isEdition } }
+    }
+  } = useReduxStore();
+  const {
+    control,
+    register,
+    setValue,
+    formState: { errors }
+  } = useFormContext<AcademicPeriodData>();
+
   const removed = useWatch({
     control,
     name: `courses.${index}.removed`
@@ -50,7 +56,8 @@ export const GradeInput = ({
         placeholder="Nota"
         defaultValue={`${field.grade}`}
         disabled={removed}
-        {...register(`courses.${index}.grade`)}
+        error={!!errors.courses?.[index]?.grade}
+        {...register(`courses.${index}.grade`, { required: !removed, min: 0, max: 5 })}
       />
     </FormGrid>
   );
