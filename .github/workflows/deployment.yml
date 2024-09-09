@@ -25,14 +25,26 @@ jobs:
     - name: Build project
       run: npm run build
 
-    - name: Deploy to Github Pages
-      run: |
-        git config --global user.email $user_name
-        git config --global user.name $user_email
-        git remote set-url origin https://${github_token}@github.com/${repository}
-        npm run deploy
-      env:
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
-        github_token: ${{ secrets.DEPLOY_ACCESS }}
-        repository: ${{ github.repository }}
+    - name: Upload production-ready build files
+      uses: actions/upload-artifact@v4
+      with:
+        name: production-files
+        path: ./dist
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-files
+          path: ./dist
+
+      - name: Deploy to Github Pages
+        uses: peaceiris/actions-gh-pages@v4
+        env:
+          github_token: ${{ secrets.DEPLOY_ACCESS }}
+          publish_dir: ./dist
