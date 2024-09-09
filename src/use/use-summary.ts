@@ -13,6 +13,7 @@ export const useAcademicSummary = () => {
   } = useReduxStore();
 
   const [summary] = useState(new AcademicSummary());
+  const [summary_grade, setSummaryGrade] = useState(0);
 
   const parseAcademicPeriod = (academicPeriod: AcademicPeriodData) => {
     const period = new AcademicPeriod(
@@ -48,6 +49,8 @@ export const useAcademicSummary = () => {
       summary.academic_periods[index].accumulated_grade = summary.summary_grade();
       updateAccumulatedGrade(index, summary.summary_grade());
     });
+
+    setSummaryGrade(summary.summary_grade());
   }, [academics.periods, summary, updateAccumulatedGrade]);
 
   useEffect(() => {
@@ -56,6 +59,7 @@ export const useAcademicSummary = () => {
 
   return {
     summary,
+    summary_grade,
     parseAcademicPeriod,
     updateSummary
   };

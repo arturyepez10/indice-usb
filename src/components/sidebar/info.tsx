@@ -44,7 +44,7 @@ type PropertiesType =
   | "total_credits_failed";
 
 export default function Info() {
-  const { summary } = useAcademicSummary();
+  const { summary, summary_grade } = useAcademicSummary();
 
   const [tab, setTab] = useState(0);
 
@@ -58,7 +58,7 @@ export default function Info() {
         INDICE ACADÉMICO
       </Typography>
       <Typography variant="h4" gutterBottom>
-        {summary.summary_grade()}
+        {summary_grade}
       </Typography>
 
       <Box width="100%">
