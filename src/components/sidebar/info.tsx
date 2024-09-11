@@ -7,6 +7,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 
 import useAcademicSummary from '../../use/use-summary';
 
@@ -91,6 +92,25 @@ export default function Info() {
           </ListItem>
         ))}
       </List>
+
+      <Divider style={{ marginTop: "5em" }} />
+
+      <Box padding={2} display="flex" flexDirection="column">
+        <Typography variant="caption" color="text.secondary">
+          Desarrollado por
+          {" "}
+          <a href="https://github.com/arturyepez10" target="_blank" rel="noopener noreferrer">
+            Arturo Yepez
+          </a>
+        </Typography>
+        <Typography variant="caption" color="text.secondary">
+          Versión actual
+          {" "}
+          <a href="https://github.com/arturyepez10/indice-usb" target="_blank" rel="noopener noreferrer">
+            0.9.0
+          </a>
+        </Typography>
+      </Box>
     </>
   );
 }
