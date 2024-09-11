@@ -32,7 +32,9 @@ export const WebSidebar = () => {
         }}
       >
         <ToggleColorMode />
-        <FormDialog />
+        <Box maxWidth="50%">
+          <FormDialog />
+        </Box>
       </Box>
       <Box
         sx={{
