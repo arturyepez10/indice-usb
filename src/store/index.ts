@@ -2,11 +2,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import settingsReducer from "./settings";
 import academicsReducer from "./academics";
 
+import { cookiesSettingsListener, academicDataListener } from "./middleware";
+
 export const store = configureStore({
   reducer: {
     settings: settingsReducer,
     academics: academicsReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(cookiesSettingsListener.middleware, academicDataListener.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
