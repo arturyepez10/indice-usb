@@ -1,7 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../store";
-import { setMode, setPeriodModalOpen, setEditPeriod } from "../store/settings";
+import {
+  setMode,
+  setPeriodModalOpen,
+  setEditPeriod,
+  setCookiesState,
+  setForceOpen
+} from "../store/settings";
 import {
   AcademicPeriodData,
   setNewPeriod,
@@ -48,6 +54,14 @@ export const useReduxStore = () => {
     dispatch(updatPeriodAccumulatedGrade({ period, value }));
   };
 
+  const updateCookiesSettings = (value: boolean) => {
+    dispatch(setCookiesState(value));
+  };
+
+  const forceCookiesModal = (value: boolean) => {
+    dispatch(setForceOpen(value));
+  }
+
   return {
     state: { settings, academics },
     dispatch,
@@ -56,6 +70,8 @@ export const useReduxStore = () => {
     addAcademicPeriod,
     deleteAcademicPeriod,
     editAcademicPeriod,
-    updateAccumulatedGrade
+    updateAccumulatedGrade,
+    updateCookiesSettings,
+    forceCookiesModal
   };
 };
