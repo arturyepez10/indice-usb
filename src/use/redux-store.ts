@@ -75,3 +75,5 @@ export const useReduxStore = () => {
     forceCookiesModal
   };
 };
+
+export default useReduxStore;

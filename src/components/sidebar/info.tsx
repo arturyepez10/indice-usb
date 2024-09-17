@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
 import useAcademicSummary from '../../use/use-summary';
+import useReduxStore from '../../use/redux-store';
 
 const statistics = [
   {
@@ -46,6 +47,7 @@ type PropertiesType =
 
 export default function Info() {
   const { summary, summary_grade } = useAcademicSummary();
+  const { forceCookiesModal } = useReduxStore();
 
   const [tab, setTab] = useState(0);
 
@@ -109,6 +111,18 @@ export default function Info() {
           <a href="https://github.com/arturyepez10/indice-usb" target="_blank" rel="noopener noreferrer">
             0.9.0
           </a>
+        </Typography>
+        <Typography
+          variant="caption"
+          color="text.secondary"
+          style={{
+            textDecorationLine: "underline",
+            cursor: "pointer"
+          }}
+          width="fit-content"
+          onClick={() => forceCookiesModal(true)}
+        >
+          Política de datos
         </Typography>
       </Box>
     </>
