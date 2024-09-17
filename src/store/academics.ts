@@ -19,8 +19,13 @@ export interface AcademicsState {
   periods: AcademicPeriodData[];
 }
 
+const academicData = localStorage.getItem('state_data');
+
 const initialState: AcademicsState = {
-  periods: [],
+  periods: 
+    academicData
+      ? JSON.parse(academicData) as AcademicPeriodData[]
+      : [],
 };
 
 export const academicsSlice = createSlice({
