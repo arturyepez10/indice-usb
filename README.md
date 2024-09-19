@@ -49,6 +49,10 @@ A su vez, para mayor usabilidad, también se ofrece la posibilidad de poder desc
 * El archivo que se puede importar debe ser `JSON`.
   * Una serie de validaciones se es realizada sobre el archivo cargado para evitar errores de consistencia en la información.
 
+## ¿Como utilizarla de forma local?
+
+Para más información referirse al archivo secundariod de documentación: `development.md`.
+
 ## Sugerencias
 
 Si tienen alguna sugerencia, sientanse libres de contactarme o crear un *issue* al respecto :)
