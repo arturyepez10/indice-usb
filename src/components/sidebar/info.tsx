@@ -11,6 +11,7 @@ import Divider from '@mui/material/Divider';
 
 import useAcademicSummary from '../../use/use-summary';
 import useReduxStore from '../../use/redux-store';
+import DataUse from './data-use';
 
 const statistics = [
   {
@@ -95,7 +96,9 @@ export default function Info() {
         ))}
       </List>
 
-      <Divider style={{ marginTop: "5em" }} />
+      <DataUse />
+
+      <Divider style={{ marginTop: "1em" }} />
 
       <Box padding={2} display="flex" flexDirection="column">
         <Typography variant="caption" color="text.secondary">
