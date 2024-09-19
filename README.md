@@ -19,6 +19,19 @@ Una de las características del **Indice Academico** es que ofrece una visión c
 
 Para más información de como se realiza el cálculo, se puede consultar el siguiente repositorio que contiene el paquete de **npm**: [Indice USB (NodeJS)](https://github.com/arturyepez10/indice-usb-node/).
 
+## ¿Cómo utilizar?
+
+1. Si es la primera vez que entras al sitio, te saldrá el aviso sobre la Política de Uso de Datos, tienes la opción de aceptarla o no.
+1. Para agregar un nuevo período académico, darle al botón que dice "Agregar Trimestre"
+1. Llena los datos del trimestre, incluyendo todos los cursos vistos
+  * Puedes marcar si el curso tiene alguna de las siguientes características: "con efecto" o "retirado"
+  * El comportamiento de estas coincide con el comportamiento que se exhibe en la página oficial del expediente académico.
+1. ¡Agrega cuantos períodos académicos consideres necesarios!
+1. Si necesitas cambiar alguno o cometiste un error en algunos de los cursos que viste, no te preocupes: presiona el icono del lapiz y podrás editar toda la información relacionada.
+1. Si introdujiste por error un trimestre, tienes la opción de eliminarlo presionando el icono de la papelera de basura. ¡Asi de sencillo!
+
+Todas las acciones disponibles, actualizarán en tiempo real el indice academico y lo mostrarán en el panel lateral (si es versión web) o en cajón de información (si es versión móvil).
+
 ## Funcionalidades
 
 ### UI Interactiva
